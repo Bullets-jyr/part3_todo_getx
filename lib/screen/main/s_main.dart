@@ -15,8 +15,7 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => MainScreenState();
 }
 
-class MainScreenState extends State<MainScreen>
-    with SingleTickerProviderStateMixin {
+class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin, TodoDataProvider {
   TabItem _currentTab = TabItem.todo;
   final tabs = [TabItem.todo, TabItem.search];
   final List<GlobalKey<NavigatorState>> navigatorKeys = [];
@@ -55,20 +54,7 @@ class MainScreenState extends State<MainScreen>
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            context.holder.addTodo();
-            // final result = await WriteTodoDialog().show();
-            // if (result != null && mounted) {
-            //   // TodoDataHolder.of(context).notifier.addTodo(
-            //   context.holder.notifier.addTodo(
-            //         Todo(
-            //           id: DateTime.now().microsecondsSinceEpoch,
-            //           title: result.text,
-            //           dueDate: result.dateTime,
-            //         ),
-            //       );
-            //   // debugPrint(result.text);
-            //   // debugPrint(result.dateTime.formattedDate);
-            // }
+            todoData.addTodo();
           },
           child: const Icon(EvaIcons.plus),
         ),
